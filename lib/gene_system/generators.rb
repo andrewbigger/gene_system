@@ -1,7 +1,7 @@
 require 'json'
 
 module GeneSystem
-  # Generators create empty projects for the app_archetype gem
+  # Generators create empty projects for the gene_system gem
   module Generators
     # Default sample step
     DEFAULT_STEP = {
