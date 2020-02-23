@@ -24,7 +24,7 @@ local conf = {
   "version": "0.1.1",
   "platform": "macos",
   "metadata": {
-    "gene_sys": {
+    "gene_system": {
       "version": "0.0.1"
     },
   },
@@ -63,6 +63,6 @@ local conf = {
         },
       },
       "tags": "app " + bin
-    } for bin in conf.variables.bin
+    } for bin in conf.variables.bins
   ],
 }

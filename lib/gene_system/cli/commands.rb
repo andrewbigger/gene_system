@@ -23,6 +23,27 @@ module GeneSystem
           dest
         )
       end
+
+      ##
+      # Applies a manifest to the host system
+      #
+      # @param dest [String]
+      # @param args [Array]
+      #
+      def self.apply(dest, args = [])
+        manifest_file_name = args.shift
+
+        raise 'no manifest name provided' unless manifest_file_name
+
+        manifest_path = File.join(dest, manifest_file_name)
+
+        unless File.exist?(manifest_path)
+          raise "cannot find manifest at #{manifest_path}"
+        end
+
+        manifest = GeneSystem::Manifest.new_from_file(manifest_path)
+        puts manifest
+      end
     end
   end
 end

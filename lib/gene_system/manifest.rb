@@ -49,9 +49,12 @@ module GeneSystem
     # list of supported platforms
     SUPPORTED_PLATFORMS = %w[macos debian].freeze
 
+    attr_reader :steps
+
     def initialize(path, data)
       @path = path
       @data = Hashie::Mash.new(data)
+      @steps = GeneSystem::Step.load_steps(@data.steps)
     end
 
     ##

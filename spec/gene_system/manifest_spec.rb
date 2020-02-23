@@ -22,6 +22,7 @@ RSpec.describe GeneSystem::Manifest do
         'version' => version,
         'platform' => platform,
         'metadata' => gene_system_meta,
+        'steps' => []
       }.to_json
     end
 
@@ -100,7 +101,7 @@ RSpec.describe GeneSystem::Manifest do
       {
         'name' => 'test_manifest',
         'version' => '0.1.0',
-        'variables' => {}
+        'steps' => []
       }
     end
 
@@ -120,7 +121,7 @@ RSpec.describe GeneSystem::Manifest do
       {
         'name' => 'test_manifest',
         'version' => '0.1.0',
-        'variables' => {}
+        'steps' => []
       }
     end
 
@@ -142,7 +143,7 @@ RSpec.describe GeneSystem::Manifest do
         'name' => 'test_manifest',
         'version' => '0.1.0',
         'metadata' => meta,
-        'variables' => {}
+        'steps' => []
       }
     end
 
@@ -165,7 +166,7 @@ RSpec.describe GeneSystem::Manifest do
         'version' => '0.1.0',
         'metadata' => { 'foo' => 'bar' },
         'platform' => platform,
-        'variables' => {}
+        'steps' => []
       }
     end
 
