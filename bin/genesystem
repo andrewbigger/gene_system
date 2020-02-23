@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(__dir__ + '/../lib')
+
+require 'rubygems'
+require 'optparse'
+require 'highline'
+
+require 'gene_system'
+require 'gene_system/cli'
+
+require 'byebug'
+
+USAGE = "GeneSystem system configuration tool
+
+Usage:\tgenesystem <command> <variables> <opts>
+Options:
+  \s\s\s\s--trace\t\t trace mode on
+  -h, --help\t\t print usage
+
+Commands:
+".freeze
+
+@trace = false
+@overwrite = false
+
+OptionParser.new do |opts|
+  opts.banner = USAGE
+  opts.on('--trace') { @trace = true }
+
+  opts.on_tail('-h', '--help') do
+    GeneSystem::CLI.print_message_and_exit(USAGE)
+  end
+end.parse!
+
+begin
+  raise 'ERROR: no command provided' unless ARGV[0]
+
+  cmd = ARGV.shift
+  GeneSystem::CLI::Commands.public_send(
+    cmd.to_sym,
+    ARGV
+  )
+rescue StandardError => e
+  GeneSystem::CLI.print_message(e)
+  GeneSystem::CLI.print_message(e.backtrace) if @trace
+  GeneSystem::CLI.print_message("\n")
+  GeneSystem::CLI.print_message_and_exit(USAGE)
+end
+
+exit(0)
