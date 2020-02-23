@@ -22,6 +22,12 @@ local conf = {
 {
   "name": "macos_ruby_dev",
   "version": "0.1.1",
+  "platform": "macos",
+  "metadata": {
+    "gene_sys": {
+      "version": "0.0.1"
+    },
+  },
   "steps": [
     // install apps
     {
