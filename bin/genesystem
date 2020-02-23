@@ -19,10 +19,12 @@ Options:
   -h, --help\t\t print usage
 
 Commands:
+  new <name>\t\t creates a new manifest
 ".freeze
 
 @trace = false
 @overwrite = false
+@dest = Dir.pwd
 
 OptionParser.new do |opts|
   opts.banner = USAGE
@@ -39,6 +41,7 @@ begin
   cmd = ARGV.shift
   GeneSystem::CLI::Commands.public_send(
     cmd.to_sym,
+    @dest,
     ARGV
   )
 rescue StandardError => e
