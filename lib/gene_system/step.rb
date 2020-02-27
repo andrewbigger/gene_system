@@ -22,7 +22,8 @@ module GeneSystem
 
     def initialize(data)
       @data = Hashie::Mash.new(data)
-      @tags = @data.tags.split("\s")
+      @tags = []
+      @tags = @data.tags.split("\s") if @data.tags
     end
 
     ##

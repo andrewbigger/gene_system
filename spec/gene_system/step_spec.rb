@@ -27,7 +27,6 @@ RSpec.describe GeneSystem::Step do
     }
   end
 
-  # expect([1, 3, 5]).to all( be_odd )
   describe '.load_steps' do
     let(:steps_data) do
       [
@@ -45,6 +44,19 @@ RSpec.describe GeneSystem::Step do
       expect(@steps).to all(
         be_a(GeneSystem::Step)
       )
+    end
+
+    context 'when tags are not present' do
+      let(:step_data) do
+        {
+          'name' => name,
+          'exe' => exe
+        }
+      end
+
+      it 'returns empty array when tags are not set' do
+        expect(@steps.first.tags).to be_empty
+      end
     end
   end
 
