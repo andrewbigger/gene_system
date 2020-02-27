@@ -19,12 +19,13 @@ Options:
   -h, --help\t\t print usage
 
 Commands:
-  new <name>\t\t creates a new manifest
+  new <rel>\t\t creates a new manifest
+  install <rel>\t\t applies install steps specified in manifest
+  remove <rel>\t\t applies remove steps specified in manifest
 ".freeze
 
 @trace = false
 @overwrite = false
-@dest = Dir.pwd
 
 OptionParser.new do |opts|
   opts.banner = USAGE
@@ -41,7 +42,6 @@ begin
   cmd = ARGV.shift
   GeneSystem::CLI::Commands.public_send(
     cmd.to_sym,
-    @dest,
     ARGV
   )
 rescue StandardError => e
