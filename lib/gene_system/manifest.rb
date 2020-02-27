@@ -4,6 +4,8 @@ require 'hashie'
 module GeneSystem
   # Manifest is an in memory representation of a manifest file
   class Manifest
+    DEFAULT_QUERY = ->(_step) { return true }
+
     class <<self
       ##
       # Creates a [GeneSystem::Manifest] from a manifest json so long as the
@@ -48,8 +50,6 @@ module GeneSystem
 
     # list of supported platforms
     SUPPORTED_PLATFORMS = %w[macos debian].freeze
-
-    attr_reader :steps
 
     def initialize(path, data)
       @path = path
@@ -99,6 +99,29 @@ module GeneSystem
       end
 
       platform
+    end
+
+    ##
+    # Steps executes a query function in a select call against each step to
+    # return a list of steps relevant to an operation.
+    #
+    # The given query function should evaluate to true when the desired step
+    # should be in the return set.
+    #
+    # By default a all steps will be returned.
+    #
+    # @example
+    # query = ->(step) { step.tags.include?("foo") }
+    # manifest.steps(query)
+    #
+    # @param [Lambda] query
+    #
+    # @return [Array]
+    #
+    def steps(query = DEFAULT_QUERY)
+      @steps.select do |step|
+        query.call(step)
+      end
     end
   end
 end

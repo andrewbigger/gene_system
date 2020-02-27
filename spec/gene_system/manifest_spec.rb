@@ -197,4 +197,43 @@ RSpec.describe GeneSystem::Manifest do
       end
     end
   end
+
+  describe '#steps' do
+    let(:path) { 'path/to/manifest.json' }
+    let(:data) do
+      {
+        'name' => 'test_manifest',
+        'version' => '0.1.0',
+        'steps' => []
+      }
+    end
+
+    let(:step) { double(GeneSystem::Step) }
+    let(:steps) { [step, step] }
+
+    before do
+      @manifest = described_class.new(path, data)
+      @manifest.instance_variable_set(:@steps, steps)
+    end
+
+    it 'returns all steps by defualt' do
+      expect(@manifest.steps).to eq steps
+    end
+
+    context 'when given a query' do
+      let(:target_step) { double(GeneSystem::Step) }
+      let(:steps) { [step, target_step, step] }
+
+      before do
+        query = ->(step) { step == target_step }
+        @manifest.instance_variable_set(:@steps, steps)
+
+        @result = @manifest.steps(query)
+      end
+
+      it 'returns steps responding to query' do
+        expect(@result).to eq [target_step]
+      end
+    end
+  end
 end
