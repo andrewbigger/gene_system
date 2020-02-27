@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'highline', '~> 2.0'
   spec.add_dependency 'jsonnet'
   spec.add_dependency 'logger', '~> 1.4'
+  spec.add_dependency 'os'
 
   spec.add_development_dependency 'bump', '~> 0.6'
   spec.add_development_dependency 'byebug', '~> 11.0'
