@@ -50,6 +50,7 @@ RSpec.describe GeneSystem::CLI::Commands do
             'name' => 'install',
             'exe' => {
               'install' => {
+                'skip' => skip_cmd,
                 'cmd' => cmds
               }
             }
