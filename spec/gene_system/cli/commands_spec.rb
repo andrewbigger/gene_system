@@ -97,7 +97,7 @@ RSpec.describe GeneSystem::CLI::Commands do
       it 'executes steps on platform' do
         expect(platform)
           .to have_received(:execute_commands)
-          .with(cmds)
+          .with(cmds, {})
       end
 
       it 'prints success message' do

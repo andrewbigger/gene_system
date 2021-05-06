@@ -2,6 +2,19 @@ require 'spec_helper'
 
 RSpec.describe GeneSystem::Step do
   let(:name) { 'install stuff' }
+  let(:prompts) do
+    [
+      prompt
+    ]
+  end
+
+  let(:prompt) do
+    {
+      'prompt' => 'Please enter your name',
+      'var' => 'name'
+    }
+  end
+
   let(:exe) do
     {
       'install' => {
@@ -22,6 +35,7 @@ RSpec.describe GeneSystem::Step do
   let(:step_data) do
     {
       'name' => name,
+      'prompts' => prompts,
       'exe' => exe,
       'tags' => tags
     }
@@ -65,6 +79,12 @@ RSpec.describe GeneSystem::Step do
   describe '#name' do
     it 'returns name' do
       expect(subject.name).to eq name
+    end
+  end
+
+  describe '#prompts' do
+    it 'returns prompts' do
+      expect(subject.prompts).to eq prompts
     end
   end
 

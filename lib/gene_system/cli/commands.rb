@@ -1,3 +1,5 @@
+require 'highline'
+
 module GeneSystem
   module CLI
     # CLI Actions
@@ -37,10 +39,32 @@ module GeneSystem
           manifest.steps.each do |step|
             next if skip?(step, platform)
 
-            platform.execute_commands(step.install.cmd)
+            vars = ask(step.install.prompts)
+            platform.execute_commands(step.install.cmd, vars)
           end
 
           GeneSystem::CLI.print_message("\nmanifest successfully installed")
+        end
+
+        ##
+        # Asks for user input when given prompts
+        #
+        # @param prompts [Array]
+        #
+        # @return Hashie::Mash
+        #
+        def ask(prompts = [])
+          answers = Hashie::Mash.new
+          return answers if prompts.nil?
+
+          cli = HighLine.new
+
+          prompts.each do |prompt|
+            resp = cli.ask(prompt.prompt)
+            answers[prompt.var] = resp
+          end
+
+          answers
         end
 
         ##

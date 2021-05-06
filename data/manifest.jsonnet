@@ -25,7 +25,7 @@ local conf = {
   "platform": "macos",
   "metadata": {
     "gene_system": {
-      "version": "0.0.1"
+      "version": "0.1.0"
     },
   },
   "steps": [
@@ -65,5 +65,23 @@ local conf = {
       },
       "tags": "app " + bin
     } for bin in conf.variables.bins
+  ] + [
+    {
+      "name": "ask for input",
+      "exe": {
+        "install": {
+          "prompts": [
+            {
+              "prompt": "Please enter your name",
+              "var": "name",
+            },
+          ],
+          "cmd": [
+            "echo 'Hello {{name}}'"
+          ],
+        },
+      },
+      "tags": "input"
+    },
   ],
 }

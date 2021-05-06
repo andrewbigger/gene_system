@@ -41,7 +41,7 @@ RSpec.describe GeneSystem::Platform do
 
       expect(subject)
         .to have_received(:execute_command)
-        .with(cmd)
+        .with(cmd, {})
         .twice
     end
 
@@ -58,7 +58,7 @@ RSpec.describe GeneSystem::Platform do
   end
 
   describe '#execute_command' do
-    let(:cmd) { 'do something' }
+    let(:cmd) { 'do something {{awesome}}' }
     let(:pid) { 1234 }
     let(:result) { double(exitstatus: 999) }
 
@@ -68,11 +68,11 @@ RSpec.describe GeneSystem::Platform do
       allow(Process).to receive(:spawn).and_return(pid)
       allow(Process).to receive(:waitpid2).and_return([pid, result])
 
-      @result = subject.execute_command(cmd)
+      @result = subject.execute_command(cmd, awesome: 'cool')
     end
 
     it 'spawns process with command' do
-      expect(Process).to have_received(:spawn).with(cmd)
+      expect(Process).to have_received(:spawn).with('do something cool')
     end
 
     it 'waits for processs to conclude' do

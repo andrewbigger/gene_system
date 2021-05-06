@@ -36,6 +36,15 @@ module GeneSystem
     end
 
     ##
+    # Step prompt getter
+    #
+    # @return [Array]
+    #
+    def prompts
+      @data.prompts
+    end
+
+    ##
     # Step execution instructions getter
     #
     # @return [Hash]

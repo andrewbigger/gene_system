@@ -1,4 +1,5 @@
 require 'os'
+require 'ruby-handlebars'
 
 module GeneSystem
   # Platform is a class to handle command execution on host system
@@ -19,9 +20,9 @@ module GeneSystem
     #
     # @param[Array] cmds
     #
-    def execute_commands(cmds = [])
+    def execute_commands(cmds = [], vars = {})
       cmds.each do |cmd|
-        status = execute_command(cmd)
+        status = execute_command(cmd, vars)
         raise "command `#{cmd}` failed - returned #{status}" unless status.zero?
       end
     end
@@ -32,8 +33,10 @@ module GeneSystem
     # @param [String] cmd
     #
     # @return [Integer]
-    def execute_command(cmd)
-      pid = Process.spawn(cmd)
+    def execute_command(cmd, vars = {})
+      hbs = Handlebars::Handlebars.new
+
+      pid = Process.spawn(hbs.compile(cmd).call(vars))
       _, status = Process.waitpid2(pid)
 
       status.exitstatus
