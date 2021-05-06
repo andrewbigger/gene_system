@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bump', '~> 0.6'
   spec.add_development_dependency 'byebug', '~> 11.0'
+  spec.add_development_dependency 'doxie'
   spec.add_development_dependency 'private_gem', '~> 1.1'
   spec.add_development_dependency 'pry', '~> 0.11'
   spec.add_development_dependency 'puma', '~> 4.3'
