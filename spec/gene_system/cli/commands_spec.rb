@@ -35,6 +35,9 @@ RSpec.describe GeneSystem::CLI::Commands do
     let(:args) { [manifest_name] }
     let(:file_exist) { true }
 
+    let(:skip_cmd) { 'check something' }
+    let(:skip_result) { 1 }
+
     let(:cmd) { 'do something' }
     let(:cmds) { [cmd, cmd] }
 
@@ -74,6 +77,9 @@ RSpec.describe GeneSystem::CLI::Commands do
         .and_return(platform)
 
       allow(platform).to receive(:execute_commands)
+      allow(platform).to receive(:execute_command)
+        .with(skip_cmd)
+        .and_return(skip_result)
 
       allow(GeneSystem::CLI).to receive(:print_message)
     end
@@ -96,6 +102,15 @@ RSpec.describe GeneSystem::CLI::Commands do
       it 'prints success message' do
         expect(GeneSystem::CLI).to have_received(:print_message)
           .with("\nmanifest successfully installed")
+      end
+
+      context 'when skipping step' do
+        let(:skip_result) { 0 }
+
+        it 'does not execute steps' do
+          expect(platform)
+            .not_to have_received(:execute_commands)
+        end
       end
     end
 

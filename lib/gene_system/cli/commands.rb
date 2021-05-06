@@ -35,6 +35,8 @@ module GeneSystem
           platform = GeneSystem::Platform.new
 
           manifest.steps.each do |step|
+            next if platform.execute_command(step.install.skip).zero?
+
             platform.execute_commands(step.install.cmd)
           end
 

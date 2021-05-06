@@ -34,6 +34,7 @@ local conf = {
       "name": "install " + app.name,
       "exe": {
         "install": {
+          "skip": "which yolo",
           "cmd": [
             "echo install " + app.name + app.version 
           ],
