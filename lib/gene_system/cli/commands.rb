@@ -35,7 +35,7 @@ module GeneSystem
           platform = GeneSystem::Platform.new
 
           manifest.steps.each do |step|
-            next if skip?(step)
+            next if skip?(step, platform)
 
             platform.execute_commands(step.install.cmd)
           end
@@ -74,8 +74,8 @@ module GeneSystem
           GeneSystem::Manifest.new_from_file(manifest_path)
         end
 
-        def skip?(step)
-          return false if step.install.skip.empty?
+        def skip?(step, platform)
+          return false if step.install.skip.nil?
 
           platform.execute_command(step.install.skip).zero?
         end
