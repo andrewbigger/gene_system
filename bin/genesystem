@@ -9,8 +9,6 @@ require 'highline'
 require 'gene_system'
 require 'gene_system/cli'
 
-require 'byebug'
-
 USAGE = "GeneSystem system configuration tool
 
 Usage:\tgenesystem <command> <variables> <opts>
