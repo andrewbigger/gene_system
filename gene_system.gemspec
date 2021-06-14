@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version       = GeneSystem::VERSION
   spec.authors       = ['Andrew Bigger']
   spec.email         = ['andrew.bigger@gmail.com']
-  spec.summary       = 'System configuration tool for applying personal settings to a new machine.'
+  spec.summary       = 'System configuration tool for applying settings'
   spec.homepage      = 'https://github.com/andrewbigger/gene_system'
   spec.license       = 'MIT'
 

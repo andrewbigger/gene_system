@@ -1,5 +1,7 @@
 # GeneSystem
 
+[![Ruby](https://github.com/andrewbigger/gene_system/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/andrewbigger/gene_system/actions/workflows/build.yml)
+
 A gem for configuring systems via json or jsonnet manifest.
 
 ## Installation

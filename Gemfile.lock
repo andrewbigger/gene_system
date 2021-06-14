@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gene_system (0.3.1)
+    gene_system (0.3.2)
       hashie
       highline (~> 2.0)
       jsonnet
