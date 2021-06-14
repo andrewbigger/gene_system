@@ -8,10 +8,10 @@ Gem::Specification.new do |spec|
   spec.name          = 'gene_system'
   spec.version       = GeneSystem::VERSION
   spec.authors       = ['Andrew Bigger']
-  spec.email         = ['andrew@biggerconcept.com']
-  spec.summary       = 'A gem for configuring systems'
-  spec.homepage      = 'https://bitbucket.org/biggerconcept/gene_system'
-  spec.license       = 'Private'
+  spec.email         = ['andrew.bigger@gmail.com']
+  spec.summary       = 'System configuration tool for applying personal settings to a new machine.'
+  spec.homepage      = 'https://github.com/andrewbigger/gene_system'
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

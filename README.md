@@ -7,8 +7,7 @@ A gem for configuring systems via json or jsonnet manifest.
 Install the gem into your system:
 
 ```bash
-gem build
-gem install gene_system*.gem
+gem install gene_system
 ```
 
 ## Usage
@@ -29,6 +28,10 @@ Tests and quality tasks are included in the default rake task which can be run t
 bundle exec rake
 ```
 
+## Contributing
+
+See CONTRIBUTING.md for more information
+
 ## Licence
 
-This gem is not for redistribution
+This gem is covered by the terms of the MIT licence. See LICENCE for more information
