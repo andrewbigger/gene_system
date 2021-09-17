@@ -1,3 +1,6 @@
+require 'tty-prompt'
+require 'gene_system'
+
 COMMANDS = File.join(__dir__, 'commands', '*.rb')
 
 Dir[COMMANDS].sort.each do |file|

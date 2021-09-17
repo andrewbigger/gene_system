@@ -45,7 +45,7 @@ module GeneSystem
       # @param [String] path
       #
       def render_empty_manifest(name, path)
-        manifest_path = File.join(path, "#{name}.json")
+        manifest_path = File.join(path, name)
 
         File.open(manifest_path, 'w') do |f|
           f.write(

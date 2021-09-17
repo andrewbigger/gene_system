@@ -1,9 +1,7 @@
-require 'gene_system/version'
-
 module GeneSystem
   module Commands
     # Gem version command
-    class Version
+    class PrintVersion
       def initialize(options)
         @options = options
       end

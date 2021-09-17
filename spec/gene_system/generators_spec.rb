@@ -36,7 +36,7 @@ RSpec.describe GeneSystem::Generators do
     let(:name) { 'new_dev_setup' }
     let(:path) { 'path/to/manifests' }
 
-    let(:manifest_path) { File.join(path, "#{name}.json") }
+    let(:manifest_path) { File.join(path, name) }
     let(:manifest_file) { double }
 
     let(:manifest) { 'manifest' }
