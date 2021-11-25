@@ -48,7 +48,7 @@ RSpec.describe GeneSystem::Commands::CreateManifest do
       it 'reports success' do
         expect(subject)
           .to have_received(:puts)
-          .with('✔ manifest successfully created in /path/to/output')
+          .with('✔ Manifest successfully created in /path/to/output')
       end
     end
 
@@ -75,7 +75,7 @@ RSpec.describe GeneSystem::Commands::CreateManifest do
       it 'reports success' do
         expect(subject)
           .to have_received(:puts)
-          .with('✔ manifest successfully created in /path/to/given/output')
+          .with('✔ Manifest successfully created in /path/to/given/output')
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe GeneSystem::Commands::CreateManifest do
       it 'reports success' do
         expect(subject)
           .to have_received(:puts)
-          .with('✔ manifest successfully created in /path/to/output')
+          .with('✔ Manifest successfully created in /path/to/output')
       end
     end
 

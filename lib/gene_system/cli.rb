@@ -34,5 +34,31 @@ module GeneSystem
       cmd = GeneSystem::Commands::CreateManifest.new(options)
       cmd.run
     end
+
+    desc 'install', 'Applies install instructions from given manifest'
+
+    method_option(
+      :manifest,
+      type: :string,
+      desc: 'Path to manifest (i.e. manifest.json)'
+    )
+
+    def install
+      cmd = GeneSystem::Commands::InstallManifest.new(options)
+      cmd.run
+    end
+
+    desc 'remove', 'Applies remove instructions from given manifest'
+
+    method_option(
+      :manifest,
+      type: :string,
+      desc: 'Path to manifest (i.e. manifest.json)'
+    )
+
+    def remove
+      cmd = GeneSystem::Commands::RemoveManifest.new(options)
+      cmd.run
+    end
   end
 end

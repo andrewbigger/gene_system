@@ -5,8 +5,8 @@ module GeneSystem
       ##
       # Default name of gene system manifest
       #
-      DEFAULT_MANIFEST_NAME = 'manifest.json'
-      
+      DEFAULT_MANIFEST_NAME = 'manifest.json'.freeze
+
       def initialize(options)
         @options = options
         @prompt = TTY::Prompt.new
@@ -19,7 +19,7 @@ module GeneSystem
       # If the options are not provided the user will be prompted
       # for the manifest name and location.
       #
-      # If the output location is not a directory then a 
+      # If the output location is not a directory then a
       # RuntimeError will be raised.
       #
       # When successfully rendered a success message will be
@@ -47,7 +47,7 @@ module GeneSystem
           output_location
         )
 
-        puts "✔ manifest successfully created in #{output_location}"
+        puts "✔ Manifest successfully created in #{output_location}"
       end
     end
   end

@@ -1,5 +1,6 @@
 require 'os'
 require 'ruby-handlebars'
+require 'cgi'
 
 module GeneSystem
   # Platform is a class to handle command execution on host system

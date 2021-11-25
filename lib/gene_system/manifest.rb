@@ -110,7 +110,7 @@ module GeneSystem
     #
     # By default a all steps will be returned.
     #
-    # @example
+    # Example:
     # query = ->(step) { step.tags.include?("foo") }
     # manifest.steps(query)
     #
