@@ -1,0 +1,40 @@
+{
+  "name": "manifest.json",
+  "version": "0.0.1",
+  "metadata": {
+    "gene_system": {
+      "version": "0.3.2"
+    }
+  },
+  "steps": [
+    {
+      "name": "greet user",
+      "exe": {
+        "install": {
+          "prompts": [
+            {
+              "prompt": "Please enter your name",
+              "var": "name"
+            }
+          ],
+          "cmd": [
+            "echo hello '{{name}}'"
+          ]
+        },
+        "remove": {
+          "skip": "true",
+          "prompts": [
+            {
+              "prompt": "Please enter your name",
+              "var": "name"
+            }
+          ],
+          "cmd": [
+            "echo 'goodbye {{name}}'"
+          ]
+        }
+      },
+      "tags": "example step"
+    }
+  ]
+}
