@@ -22,7 +22,6 @@
           ]
         },
         "remove": {
-          "skip": "true",
           "prompts": [
             {
               "prompt": "Please enter your name",
@@ -35,6 +34,26 @@
         }
       },
       "tags": "example step"
+    },
+    {
+      "name": "print version",
+      "exe": {
+        "install": {
+          "cmd": [
+            "echo '{{manifest.name}}'",
+            "echo '{{manifest.version}}'",
+            "echo '{{manifest.metadata.gene_system.version}}'"
+          ]
+        },
+        "remove": {
+          "cmd": [
+            "echo '{{manifest.name}}'",
+            "echo '{{manifest.version}}'",
+            "echo '{{manifest.metadata.gene_system.version}}'"
+          ]
+        }
+      },
+      "tags": "example front matter access"
     }
   ]
 }

@@ -17,7 +17,11 @@ RSpec.describe GeneSystem::Commands::RemoveManifest do
     let(:platform) { double(GeneSystem::Platform) }
 
     let(:manifest) do
-      double(GeneSystem::Manifest, name: manifest_name)
+      double(
+        GeneSystem::Manifest,
+        name: manifest_name,
+        name_and_version: "#{manifest_name} v#{version}"
+      )
     end
 
     let(:skip_command) { 'false' }
@@ -68,6 +72,10 @@ RSpec.describe GeneSystem::Commands::RemoveManifest do
       allow(manifest)
         .to receive(:version)
         .and_return(version)
+
+      allow(manifest)
+        .to receive(:variables)
+        .and_return({})
 
       allow(platform)
         .to receive(:execute_commands)
@@ -174,7 +182,7 @@ RSpec.describe GeneSystem::Commands::RemoveManifest do
       it 'prints success message' do
         expect(subject)
           .to have_received(:puts)
-          .with("✔ Manifest #{manifest_name} successfully removed")
+          .with("✔ Manifest #{manifest_name} v#{version} successfully removed")
       end
     end
 
@@ -243,7 +251,7 @@ RSpec.describe GeneSystem::Commands::RemoveManifest do
       it 'prints success message' do
         expect(subject)
           .to have_received(:puts)
-          .with("✔ Manifest #{manifest_name} successfully removed")
+          .with("✔ Manifest #{manifest_name} v#{version} successfully removed")
       end
     end
   end

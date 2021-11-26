@@ -10,6 +10,7 @@ module GeneSystem
       def initialize(options)
         @options = options
         @prompt = TTY::Prompt.new
+        @manifest = nil
       end
 
       ##
@@ -23,12 +24,12 @@ module GeneSystem
           default: DEFAULT_MANIFEST_NAME
         )
 
-        manifest = GeneSystem::Manifest.new_from_file(manifest_path)
+        @manifest = GeneSystem::Manifest.new_from_file(manifest_path)
         platform = GeneSystem::Platform.new
 
-        puts("INSTALL #{manifest.name} v#{manifest.version}")
+        puts("INSTALL #{@manifest.name_and_version}")
 
-        manifest.steps.each do |step|
+        @manifest.steps.each do |step|
           next if skip?(step, platform)
 
           vars = ask(step.install.prompts)
@@ -39,7 +40,9 @@ module GeneSystem
           )
         end
 
-        puts("✔ Manifest #{manifest.name} successfully installed")
+        puts(
+          "✔ Manifest #{@manifest.name_and_version} successfully installed"
+        )
       end
 
       private
@@ -52,7 +55,7 @@ module GeneSystem
       # @return Hashie::Mash
       #
       def ask(prompts = [])
-        answers = Hashie::Mash.new
+        answers = @manifest.variables
         return answers if prompts.nil? || prompts.empty?
 
         prompts.each do |prompt|

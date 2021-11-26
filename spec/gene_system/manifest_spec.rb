@@ -132,6 +132,26 @@ RSpec.describe GeneSystem::Manifest do
     end
   end
 
+  describe '#name_and_version' do
+    let(:path) { 'path/to/manifest.json' }
+
+    let(:data) do
+      {
+        'name' => 'test_manifest',
+        'version' => '0.1.0',
+        'steps' => []
+      }
+    end
+
+    before do
+      @manifest = described_class.new(path, data)
+    end
+
+    it 'returns name and version' do
+      expect(@manifest.name_and_version).to eq 'test_manifest v0.1.0'
+    end
+  end
+
   describe '#version' do
     let(:path) { 'path/to/manifest.json' }
 
@@ -252,6 +272,36 @@ RSpec.describe GeneSystem::Manifest do
       it 'returns steps responding to query' do
         expect(@result).to eq [target_step]
       end
+    end
+  end
+
+  describe '#variables' do
+    let(:path) { 'path/to/manifest.json' }
+    let(:metadata) do
+      {
+        'gene_system' => {
+          'version' => '0.3.2'
+        }
+      }
+    end
+
+    let(:data) do
+      {
+        'name' => 'test_manifest',
+        'version' => '0.1.0',
+        'metadata' => metadata,
+        'steps' => []
+      }
+    end
+
+    before do
+      @manifest = described_class.new(path, data)
+    end
+
+    it 'returns hashie mash with manifest information' do
+      expect(@manifest.variables.manifest.name).to eq 'test_manifest'
+      expect(@manifest.variables.manifest.version).to eq '0.1.0'
+      expect(@manifest.variables.manifest.metadata).to eq metadata
     end
   end
 end

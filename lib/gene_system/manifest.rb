@@ -91,6 +91,15 @@ module GeneSystem
     end
 
     ##
+    # Manifest name and version getter
+    #
+    # @return [String]
+    #
+    def name_and_version
+      "#{name} v#{version}"
+    end
+
+    ##
     # Manifest name getter
     #
     # @return [String]
@@ -155,6 +164,21 @@ module GeneSystem
       @steps.select do |step|
         query.call(step)
       end
+    end
+
+    ##
+    # Returns manifest information and variables
+    #
+    # @return [Hashie::Mash]
+    #
+    def variables
+      Hashie::Mash.new(
+        'manifest' => {
+          'name' => name,
+          'version' => version,
+          'metadata' => metadata
+        }
+      )
     end
   end
 end
