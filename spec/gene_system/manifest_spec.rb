@@ -66,6 +66,24 @@ RSpec.describe GeneSystem::Manifest do
       end
     end
 
+    context 'when manifest is missing required attributes' do
+      let(:content) do
+        {
+          "steps": []
+        }.to_json
+      end
+
+      it 'raises missing required error' do
+        expect do
+          described_class.new_from_file(file_path)
+        end.to raise_error(
+          RuntimeError,
+          'manifest is missing required attributes name, '\
+          'version and/or metadata'
+        )
+      end
+    end
+
     context 'when manifest is from a later version of gene_system' do
       let(:gene_system_meta) do
         {

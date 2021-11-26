@@ -26,6 +26,8 @@ module GeneSystem
         manifest = GeneSystem::Manifest.new_from_file(manifest_path)
         platform = GeneSystem::Platform.new
 
+        puts("REMOVE #{manifest.name} v#{manifest.version}")
+
         manifest.steps.each do |step|
           next if skip?(step, platform)
 

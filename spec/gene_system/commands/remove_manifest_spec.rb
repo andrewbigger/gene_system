@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe GeneSystem::Commands::RemoveManifest do
   let(:options) { Hashie::Mash.new }
   let(:prompt) { double(TTY::Prompt) }
+  let(:version) { '1.0.0' }
   let(:execute_command_result) { 0 }
   let(:manifest_name) { 'some manifest' }
 
@@ -64,6 +65,10 @@ RSpec.describe GeneSystem::Commands::RemoveManifest do
         .to receive(:steps)
         .and_return([step, step])
 
+      allow(manifest)
+        .to receive(:version)
+        .and_return(version)
+
       allow(platform)
         .to receive(:execute_commands)
 
@@ -93,6 +98,12 @@ RSpec.describe GeneSystem::Commands::RemoveManifest do
         expect(GeneSystem::Manifest)
           .to have_received(:new_from_file)
           .with(manifest_path)
+      end
+
+      it 'prints remove message' do
+        expect(subject)
+          .to have_received(:puts)
+          .with("REMOVE #{manifest_name} v#{version}")
       end
 
       describe 'skip steps' do

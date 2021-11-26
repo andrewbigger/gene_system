@@ -18,6 +18,11 @@ module GeneSystem
           File.read(file_path)
         )
 
+        if missing_required?(manifest)
+          raise 'manifest is missing required attributes name, '\
+          'version and/or metadata'
+        end
+
         if incompatible?(manifest)
           raise 'provided manifest is invalid or incompatible with '\
           'this version of gene_system'
@@ -27,6 +32,34 @@ module GeneSystem
           file_path,
           manifest
         )
+      end
+
+      ##
+      # Determines whether there are missing
+      # attributes in given manifest.
+      #
+      # Manifests require name, version and
+      # metadata attributes.
+      #
+      # If these are not present in the given manifest
+      # then this method returns true, indicating
+      # that the manifest does not have all required
+      # attributes and is therefore not valid.
+      #
+      # If they are present, then false will be returned
+      # indicating that the manifest has required
+      # attributes
+      #
+      # @param [GeneSystem::Manifest] manifest
+      #
+      # @return [Boolean]
+      #
+      def missing_required?(manifest)
+        return true unless manifest['name']
+        return true unless manifest['version']
+        return true unless manifest['metadata']
+
+        false
       end
 
       ##
