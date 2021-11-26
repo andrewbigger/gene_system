@@ -43,6 +43,18 @@ module GeneSystem
       desc: 'Path to manifest (i.e. manifest.json)'
     )
 
+    method_option(
+      :include_tags,
+      type: :array,
+      desc: 'List of tags to include'
+    )
+
+    method_option(
+      :exclude_tags,
+      type: :array,
+      desc: 'List of tags to exclude'
+    )
+
     def install
       cmd = GeneSystem::Commands::InstallManifest.new(options)
       cmd.run
@@ -54,6 +66,18 @@ module GeneSystem
       :manifest,
       type: :string,
       desc: 'Path to manifest (i.e. manifest.json)'
+    )
+
+    method_option(
+      :include_tags,
+      type: :array,
+      desc: 'List of tags to include'
+    )
+
+    method_option(
+      :exclude_tags,
+      type: :array,
+      desc: 'List of tags to exclude'
     )
 
     def remove

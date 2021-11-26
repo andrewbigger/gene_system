@@ -144,26 +144,12 @@ module GeneSystem
     end
 
     ##
-    # Steps executes a query function in a select call against each step to
-    # return a list of steps relevant to an operation.
+    # Returns a steps as a step collection
     #
-    # The given query function should evaluate to true when the desired step
-    # should be in the return set.
+    # @return [GeneSystem::StepCollection]
     #
-    # By default a all steps will be returned.
-    #
-    # Example:
-    # query = ->(step) { step.tags.include?("foo") }
-    # manifest.steps(query)
-    #
-    # @param [Lambda] query
-    #
-    # @return [Array]
-    #
-    def steps(query = DEFAULT_QUERY)
-      @steps.select do |step|
-        query.call(step)
-      end
+    def steps
+      GeneSystem::StepCollection.new(@steps)
     end
 
     ##
