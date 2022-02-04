@@ -37,7 +37,7 @@ module GeneSystem
       }
     end
 
-    class <<self
+    class << self
       ##
       # Renders empty manifest at specified path
       #

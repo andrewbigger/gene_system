@@ -38,9 +38,7 @@ module GeneSystem
           default: Dir.pwd
         )
 
-        unless File.directory?(output_location)
-          raise 'output location must be a folder'
-        end
+        raise 'output location must be a folder' unless File.directory?(output_location)
 
         GeneSystem::Generators.render_empty_manifest(
           manifest_name,

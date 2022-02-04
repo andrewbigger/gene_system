@@ -4,6 +4,7 @@ module GeneSystem
   # Filterable and mergable collection of steps
   class StepCollection
     attr_reader :steps
+
     extend Forwardable
 
     ##
@@ -23,7 +24,7 @@ module GeneSystem
     # @return [Boolean]
     #
     STEP_INCLUDE_ANY_TAG = lambda do |step, query = {}|
-      raise 'query must include tags' unless query[:tags]&.is_a?(Array)
+      raise 'query must include tags' unless query[:tags].is_a?(Array)
 
       results = query[:tags].map do |tag|
         step.tags.include?(tag)
@@ -42,7 +43,7 @@ module GeneSystem
     # @return [Boolean]
     #
     STEP_EXCLUDE_ANY_TAG = lambda do |step, query = {}|
-      raise 'query must include tags' unless query[:tags]&.is_a?(Array)
+      raise 'query must include tags' unless query[:tags].is_a?(Array)
 
       results = query[:tags].map do |tag|
         step.tags.include?(tag)

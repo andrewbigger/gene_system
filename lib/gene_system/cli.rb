@@ -84,5 +84,18 @@ module GeneSystem
       cmd = GeneSystem::Commands::RemoveManifest.new(options)
       cmd.run
     end
+
+    desc 'show', 'Shows manifest instructions'
+
+    method_option(
+      :manifest,
+      type: :string,
+      desc: 'Path to manifest (i.e. manifest.json)'
+    )
+
+    def describe
+      cmd = GeneSystem::Commands::DescribeManifest.new(options)
+      cmd.run
+    end
   end
 end

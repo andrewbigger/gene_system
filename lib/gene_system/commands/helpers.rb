@@ -76,13 +76,9 @@ module GeneSystem
       def filters
         filters = {}
 
-        if @options.include_tags
-          filters[StepCollection::STEP_INCLUDE_ANY_TAG] = @options.include_tags
-        end
+        filters[StepCollection::STEP_INCLUDE_ANY_TAG] = @options.include_tags if @options.include_tags
 
-        if @options.exclude_tags
-          filters[StepCollection::STEP_EXCLUDE_ANY_TAG] = @options.exclude_tags
-        end
+        filters[StepCollection::STEP_EXCLUDE_ANY_TAG] = @options.exclude_tags if @options.exclude_tags
 
         filters
       end

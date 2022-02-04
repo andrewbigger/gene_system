@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'gene_system/version'
@@ -19,24 +17,25 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'hashie'
-  spec.add_dependency 'highline', '~> 2.0'
+  spec.add_dependency 'highline'
   spec.add_dependency 'jsonnet'
-  spec.add_dependency 'logger', '~> 1.4'
+  spec.add_dependency 'logger'
   spec.add_dependency 'os'
-  spec.add_dependency 'ruby-handlebars', '~> 0.4'
-  spec.add_dependency 'thor', '~> 1.0'
+  spec.add_dependency 'ruby-handlebars'
+  spec.add_dependency 'thor'
   spec.add_dependency 'tty-prompt'
+  spec.add_dependency 'tty-table'
 
-  spec.add_development_dependency 'bump', '~> 0.6'
-  spec.add_development_dependency 'byebug', '~> 11.0'
+  spec.add_development_dependency 'bump'
+  spec.add_development_dependency 'byebug'
   spec.add_development_dependency 'doxie'
-  spec.add_development_dependency 'private_gem', '~> 1.1'
-  spec.add_development_dependency 'pry', '~> 0.11'
-  spec.add_development_dependency 'puma', '~> 4.3'
-  spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'rspec', '~> 3.7', '>= 3.7.0'
-  spec.add_development_dependency 'rubocop', '~> 0.58'
-  spec.add_development_dependency 'rubycritic', '~> 3.4', '>= 3.4.0'
-  spec.add_development_dependency 'simplecov', '~> 0.16'
-  spec.add_development_dependency 'yard', '~> 0.9'
+  spec.add_development_dependency 'private_gem'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'puma'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubycritic'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'yard'
 end

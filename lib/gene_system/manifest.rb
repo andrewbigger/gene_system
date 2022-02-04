@@ -6,7 +6,7 @@ module GeneSystem
   class Manifest
     DEFAULT_QUERY = ->(_step) { return true }
 
-    class <<self
+    class << self
       ##
       # Creates a [GeneSystem::Manifest] from a manifest json so long as the
       # manifest is compatible with this version of GeneSystem.
@@ -136,9 +136,7 @@ module GeneSystem
     def platform
       platform = @data.platform
 
-      unless SUPPORTED_PLATFORMS.include?(platform)
-        CLI.print_warning("WARN: unrecognized platform: #{@data.platform}")
-      end
+      CLI.print_warning("WARN: unrecognized platform: #{@data.platform}") unless SUPPORTED_PLATFORMS.include?(platform)
 
       platform
     end

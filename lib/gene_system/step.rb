@@ -3,7 +3,7 @@ require 'hashie'
 module GeneSystem
   # Step is an in memory representation of a manifest step
   class Step
-    class <<self
+    class << self
       ##
       # Loads steps from an array of steps
       #
